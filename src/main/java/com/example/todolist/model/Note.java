@@ -1,9 +1,23 @@
 package com.example.todolist.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class Note {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; // Unique identifier for the note
+
     private String title; // Title of the note
     private String content;  // Content of the note
+
+    // Default no-arg constructor
+    public Note() {
+    }
 
     // Constructor that accepts all three fields
     public Note(Long id, String title, String content) {
@@ -42,4 +56,3 @@ public class Note {
         this.content = content;
     }
 }
-
