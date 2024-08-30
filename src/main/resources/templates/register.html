@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Register</title>
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+        }
+
+        h1, h2, h3 {
+            color: #343a40;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .navbar {
+            background-color: #343a40;
+        }
+
+        .navbar a {
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+<h1>Register</h1>
+<form th:action="@{/register}" th:object="${user}" method="post">
+    <div>
+        <label for="username">Username:</label>
+        <input type="text" id="username" th:field="*{username}" />
+    </div>
+    <div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" th:field="*{password}" />
+    </div>
+    <button type="submit" class="btn btn-primary">Register</button>
+</form>
+<p th:text="${registrationError}"></p>
+</body>
+</html>

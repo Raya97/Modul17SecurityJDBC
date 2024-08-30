@@ -1,39 +1,95 @@
 ## UK
-# Modul14NoteApp
+# Modul17SecurityJDBC
 
 ## Опис проєкту
 
-**Modul14NoteApp** - це проста система для управління нотатками, створена за допомогою Spring Boot. У цьому проєкті користувач може створювати, переглядати, редагувати та видаляти нотатки.
+**Modul17SecurityJDBC** - це система для управління нотатками, яка включає додатковий функціонал авторизації та аутентифікації користувачів, реалізований за допомогою Spring Security з використанням JDBC.
 
 ## Структура проєкту
 
-- **Note**: Основна сутність проєкту, яка представляє нотатку з полями `id`, `title` та `content`.
-- **NoteRepository**: Репозиторій, який надає доступ до CRUD операцій з базою даних для сутності Note.
-- **NoteService**: Сервісний клас, який реалізує CRUD операції для нотаток, зберігаючи їх у базі даних.
-- **NoteController**: Контролер, який обробляє HTTP-запити для управління нотатками (створення, перегляд, редагування та видалення).
-- **TemplateController**: Простіший контролер, який служить для завантаження тестових шаблонів.
+### Моделі
+- **User**: Модель користувача з полями `id`, `username`, `password`, `enabled`.
+- **Authority**: Модель для зберігання ролей користувачів з полями `username` та `authority`.
+- **Note**: Основна сутність проєкту, яка представляє нотатку з полями `id`, `title`, `content`.
+
+### Репозиторії
+- **UserRepository**: Репозиторій для управління користувачами.
+- **AuthorityRepository**: Репозиторій для управління ролями користувачів.
+- **NoteRepository**: Репозиторій для управління нотатками.
+
+### Сервіси
+- **UserService**: Сервіс для роботи з користувачами, включаючи шифрування паролів і збереження ролей.
+- **NoteService**: Сервіс для управління нотатками.
+- **PasswordChecker**: Клас для перевірки пароля користувача.
+- **PasswordEncoderUtil**: Клас для шифрування паролів.
+
+### Конфігурація безпеки
+- **SecurityConfig**: Конфігурація Spring Security для захисту доступу до ресурсів програми.
+
+### Контролери
+- **LoginController**: Контролер для обробки запитів на сторінку входу.
+- **RegistrationController**: Контролер для реєстрації нових користувачів.
+- **NoteController**: Контролер для управління нотатками.
+- **TemplateController**: Контролер для завантаження шаблонів.
+- **GlobalExceptionHandler**: Глобальний обробник винятків.
+- **CustomErrorController**: Контролер для обробки помилок.
+
+### Міграції бази даних
 - **V1__Create_note_table.sql**: Flyway міграція для створення таблиці `note`.
-- **404.html**: Шаблон сторінки помилки, який відображається при невдалих запитах.
-- **edit.html**: Шаблон для редагування нотатки.
-- **list.html**: Шаблон для перегляду списку нотаток.
-- **test.html**: Тестовий шаблон для перевірки налаштувань.
+- **V2__Create_user_table.sql**: Flyway міграція для створення таблиць `users` та `authorities`.
+
+### Шаблони
+- **error/404.html**: Шаблон сторінки помилки, що відображається при невдалих запитах.
+- **note/error.html**: Загальний шаблон сторінки помилки.
+- **note/login.html**: Шаблон для сторінки входу.
+- **note/register.html**: Шаблон для сторінки реєстрації.
+- **note/test.html**: Тестовий шаблон для перевірки конфігурацій.
+
+---
 
 ## EN
-# Modul14NoteApp
+# Modul17SecurityJDBC
 
 ## Project Description
 
-**Modul14NoteApp** is a simple note management system built using Spring Boot. In this project, users can create, view, edit, and delete notes.
+**Modul17SecurityJDBC** is a note management system that includes additional functionality for user authorization and authentication, implemented using Spring Security with JDBC.
 
 ## Project Structure
 
-- **Note**: The main entity of the project, representing a note with `id`, `title`, and `content` fields.
-- **NoteRepository**: Repository that provides CRUD operations for the `Note` entity in the database.
-- **NoteService**: A service class that implements CRUD operations for notes, storing them in the database.
-- **NoteController**: A controller that handles HTTP requests for managing notes (create, view, edit, and delete).
-- **TemplateController**: A simpler controller used to load test templates.
-- **V1__Create_note_table.sql**: Flyway migration script for creating the `note` table.
-- **404.html**: The error page template displayed when a request fails.
-- **edit.html**: Template for editing a note.
-- **list.html**: Template for viewing the list of notes.
-- **test.html**: Test template for checking configurations.
+### Models
+- **User**: User model with fields `id`, `username`, `password`, `enabled`.
+- **Authority**: Model for storing user roles with fields `username` and `authority`.
+- **Note**: The main entity of the project, representing a note with `id`, `title`, `content`.
+
+### Repositories
+- **UserRepository**: Repository for managing users.
+- **AuthorityRepository**: Repository for managing user roles.
+- **NoteRepository**: Repository for managing notes.
+
+### Services
+- **UserService**: Service for working with users, including password encryption and role saving.
+- **NoteService**: Service for managing notes.
+- **PasswordChecker**: Class for checking user password.
+- **PasswordEncoderUtil**: Class for encrypting passwords.
+
+### Security Configuration
+- **SecurityConfig**: Spring Security configuration for securing access to application resources.
+
+### Controllers
+- **LoginController**: Controller for handling login page requests.
+- **RegistrationController**: Controller for registering new users.
+- **NoteController**: Controller for managing notes.
+- **TemplateController**: Controller for loading templates.
+- **GlobalExceptionHandler**: Global exception handler.
+- **CustomErrorController**: Error handling controller.
+
+### Database Migrations
+- **V1__Create_note_table.sql**: Flyway migration for creating the `note` table.
+- **V2__Create_user_table.sql**: Flyway migration for creating `users` and `authorities` tables.
+
+### Templates
+- **error/404.html**: Error page template displayed when a request fails.
+- **note/error.html**: General error page template.
+- **note/login.html**: Template for the login page.
+- **note/register.html**: Template for the registration page.
+- **note/test.html**: Test template for checking configurations.
